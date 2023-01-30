@@ -11,8 +11,19 @@ class CartItem extends React.Component {
             Qty: 0,
             img: ''
         }
+        this.testing();
         // other was to use it by using .bind(this);
         // this.increaseQuantity = this.increaseQuantity.bind(this)
+    }
+    testing (){
+        const promise = new Promise((resolve, reject) =>{
+            setTimeout(()=>{
+                resolve('done');
+            }, 3000)
+        })
+        promise.then(()=>{
+            this.setState({Qty : this.state.Qty +10})
+        })
     }
     increaseQuantity= () =>{  //aerro function bind it by self
         // this.state.Qty += 1;
@@ -21,7 +32,7 @@ class CartItem extends React.Component {
         // this.setState({
         //     Qty: this.state.Qty + 1  // this is calles "Shellow mearging"
         // })
-        // form 2 setState
+        // form 2 setState if previus state require the this use is best
         this.setState((prevState) =>{
             return {
                 Qty :prevState.Qty +1
@@ -29,8 +40,13 @@ class CartItem extends React.Component {
         })
     }
     decreaseQuantity=() =>{
+        const {Qty} = this.state;
+
+        if(Qty == 0 ){
+            return;
+        } 
         this.setState({
-            Qty: this.state.Qty - 1 || this.state.Qty > -1
+            Qty: this.state.Qty - 1
         })
     }
     render (){
