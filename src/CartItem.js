@@ -2,19 +2,7 @@ import React  from "react";
 
 class CartItem extends React.Component {
     // in jsx we define like using constructor
-    constructor (){
-        // boz itis a java script thing we have to call the "super()" as a constructor of parent class that is "React.Component"
-        super();
-        this.state = { // this.state is a object
-            price: 999,
-            title: 'Mobile Phone',
-            Qty: 0,
-            img: ''
-        }
-        // this.testing();
-        // other was to use it by using .bind(this);
-        // this.increaseQuantity = this.increaseQuantity.bind(this)
-    }
+   
     // testing (){
     //     const promise = new Promise((resolve, reject) =>{
     //         setTimeout(()=>{
@@ -51,8 +39,9 @@ class CartItem extends React.Component {
         })
     }
     render (){
-        const {price, title, Qty} = this.state;
+        const {price, title, Qty} = this.props.products;
         return (
+            
                 <div className="cart-item">
                    <div className="left-block">
                         <img style={styles.image} />
