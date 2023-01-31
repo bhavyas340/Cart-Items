@@ -11,20 +11,21 @@ class CartItem extends React.Component {
             Qty: 0,
             img: ''
         }
-        this.testing();
+        // this.testing();
         // other was to use it by using .bind(this);
         // this.increaseQuantity = this.increaseQuantity.bind(this)
     }
-    testing (){
-        const promise = new Promise((resolve, reject) =>{
-            setTimeout(()=>{
-                resolve('done');
-            }, 3000)
-        })
-        promise.then(()=>{
-            this.setState({Qty : this.state.Qty +10})
-        })
-    }
+    // testing (){
+    //     const promise = new Promise((resolve, reject) =>{
+    //         setTimeout(()=>{
+    //             resolve('done');
+    //         }, 3000)
+    //     })
+    //     promise.then(()=>{
+    //         //setStaes act like synchronous call
+    //         this.setState({Qty : this.state.Qty +10})
+    //     })
+    // }
     increaseQuantity= () =>{  //aerro function bind it by self
         // this.state.Qty += 1;
         // console.log(this ,this.state);
