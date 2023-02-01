@@ -31,7 +31,7 @@ class CartItem extends React.Component {
     decreaseQuantity=() =>{
         const {Qty} = this.state;
 
-        if(Qty == 0 ){
+        if(Qty === 0 ){
             return;
         } 
         this.setState({
@@ -40,6 +40,7 @@ class CartItem extends React.Component {
     }
     render (){
         const {price, title, Qty} = this.props.products;
+        const {products ,onIncreaseQuantity, onDecreaseQuantity, onhandleDeleteProduct} = this.props
         return (
                 <div className="cart-item">
                    <div className="left-block">
@@ -51,9 +52,9 @@ class CartItem extends React.Component {
                         <div style={{color:'#777'}}>Qty: {Qty}</div>
                         <div className="cart-item-actions">
                             {/* {buttons} */}
-                            <img alt="increase" className="action-icons" onClick={this.increaseQuantity} src="https://icons.veryicon.com/png/o/miscellaneous/o2o-middle-school-project/plus-104.png"/>
-                            <img alt="decrease" className="action-icons" onClick={this.decreaseQuantity} src="https://static-00.iconduck.com/assets.00/circle-minus-icon-256x256-qxhfmezf.png"/>
-                            <img alt="delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/128/211/211753.png"/>
+                            <img alt="increase" className="action-icons" onClick={()=> onIncreaseQuantity(products)} src="https://icons.veryicon.com/png/o/miscellaneous/o2o-middle-school-project/plus-104.png"/>
+                            <img alt="decrease" className="action-icons" onClick={() => onDecreaseQuantity(products)} src="https://static-00.iconduck.com/assets.00/circle-minus-icon-256x256-qxhfmezf.png"/>
+                            <img alt="delete" className="action-icons" onClick={() => onhandleDeleteProduct(products.id)} src="https://cdn-icons-png.flaticon.com/128/211/211753.png"/>
                         </div>
                    </div>
 
