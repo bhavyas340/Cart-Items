@@ -1,92 +1,22 @@
 import React  from "react";
 import CartItem from "./CartItem";
 
-class Cart extends React.Component {
-    // in jsx we define like using constructor
-    constructor (){
-        // boz itis a java script thing we have to call the "super()" as a constructor of parent class that is "React.Component"
-        super();
-        this.state = { // this.state is a object
-            products:[
-                {
-                price: 9999,
-                title: 'Watch',
-                Qty: 3,
-                img: '',
-                id: 1
-            },
-            {
-                price: 79999,
-                title: 'iPhone',
-                Qty: 1,
-                img: '',
-                id: 2
-            },
-            {
-                price: 119990,
-                title: 'Mac',
-                Qty: 1,
-                img: '',
-                id: 3
-            }
-
-            ]
-            
-        }
-        // this.testing();
-        // other was to use it by using .bind(this);
-        // this.increaseQuantity = this.increaseQuantity.bind(this)
-    }
-    handleIncreaseQuantity = (product) =>{
-        const {products} = this.state;
-        const index = products.indexOf(product);
-        products[index].Qty += 1;
-        this.setState({
-            products:products
-        })
-    }
-    handleDecreaseQuantity = (product) =>{
-        const {products} = this.state;
-        const index = products.indexOf(product);
-        if(products[index].Qty === 0){
-            return;
-        }
-
-        products[index].Qty -= 1;
-        this.setState({
-            products
-        })
-    }
-    handleDeleteProduct  = (id) =>{
-        const {products } =this.state
-        const items = products.filter((item) => item.id !== id ); 
-        this.setState({
-            products: items
-        })
-
-    }
-
-    render(){
-        const {products} = this.state
-        return (
-            <div className="cart">
-                
-                {products.map((products) =>{
-                    return (
-                        <
-                            CartItem products = {products} 
-                            key={products.id}
-                            onIncreaseQuantity = {this.handleIncreaseQuantity}
-                            onDecreaseQuantity = {this.handleDecreaseQuantity}
-                            onhandleDeleteProduct ={this.handleDeleteProduct}
-                        />
-                        )
-                })}
-                {/* <CartItem/>
-                <CartItem/> */}
-            </div>
-        )
-    }
-
-}
+const Cart = (props) => {
+    const { products } = props;
+    return (
+      <div className="cart">
+        {products.map((product) => {
+          return (
+            <CartItem
+              product={product}
+              key={product.id}
+              onIncreaseQuantity={props.onIncreaseQuantity}
+              onDecreaseQuantity={props.onDecreaseQuantity}
+              onhandleDeleteProduct={props.onhandleDeleteProduct}
+            />
+          )
+        })}
+      </div>
+    );
+  }
 export default Cart;
